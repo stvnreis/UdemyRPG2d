@@ -18,9 +18,12 @@ public class Player : MonoBehaviour
     public EntityState WallJumpState { get; private set; }
     public EntityState DashState { get; private set; }
     public EntityState BasicAttackState { get; private set; }
+    public EntityState LightJumpAttackState { get; private set; }
+    public EntityState HeavyJumpAttackState { get; private set; }
 
     [Header("Attack details")]
     public Vector2[] attackVelocity;
+    public Vector2 heavyJumpAttackVelocity;
     public float attackVelocityDuration = .1f;
     public float BasicAttackComboResetTime { get; private set; } = .5f;
     private Coroutine queuedAttackCoroutine;
@@ -37,7 +40,6 @@ public class Player : MonoBehaviour
     private bool isFacingRight = true;
     public Vector2 WallJumpForce { get; private set; } = new(6, 12);
     public bool hasDashedMidAir = false;
-
 
     [Space]
     public float dashDuration = .25f;
@@ -65,6 +67,8 @@ public class Player : MonoBehaviour
         WallJumpState = new PlayerWallJumpState(this, stateMachine);
         DashState = new PlayerDashState(this, stateMachine);
         BasicAttackState = new PlayerBasicAttackState(this, stateMachine);
+        LightJumpAttackState = new PlayerLightJumpAttackState(this, stateMachine);
+        HeavyJumpAttackState = new PlayerHeavyJumpAttackState(this, stateMachine);
     }
 
     private void OnEnable()
