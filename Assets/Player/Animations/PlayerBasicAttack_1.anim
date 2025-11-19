@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerBasicAttack
+  m_Name: PlayerBasicAttack_1
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -38,10 +38,6 @@ AnimationClip:
       value: {fileID: 7399703729854385587, guid: 5da118264721dad439f256462534ccf8, type: 3}
     - time: 0.5714286
       value: {fileID: 2769979420941963701, guid: dd74fa258db266d4e8fb007a9ab202ba, type: 3}
-    - time: 0.64285713
-      value: {fileID: -7493457572754638944, guid: db84405fcdb537541a32ca8277668c67, type: 3}
-    - time: 0.71428573
-      value: {fileID: -7441866292056135291, guid: 6e7b10b0ccc906c4da63ed5b7950bb3f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -73,14 +69,12 @@ AnimationClip:
     - {fileID: -8151691991153049475, guid: aa000421563b1a541aa964d777abf0b2, type: 3}
     - {fileID: 7399703729854385587, guid: 5da118264721dad439f256462534ccf8, type: 3}
     - {fileID: 2769979420941963701, guid: dd74fa258db266d4e8fb007a9ab202ba, type: 3}
-    - {fileID: -7493457572754638944, guid: db84405fcdb537541a32ca8277668c67, type: 3}
-    - {fileID: -7441866292056135291, guid: 6e7b10b0ccc906c4da63ed5b7950bb3f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.7857143
+    m_StopTime: 0.6428572
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -100,7 +94,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.71428573
+  - time: 0.5714286
     functionName: TriggerCurrentState
     data: 
     objectReferenceParameter: {fileID: 0}

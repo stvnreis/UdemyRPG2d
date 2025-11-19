@@ -2,6 +2,13 @@ public abstract class PlayerGroundedState : EntityState
 {
     protected PlayerGroundedState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName) { }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        player.hasDashedMidAir = false;
+    }
+
     public override void Update()
     {
         base.Update();

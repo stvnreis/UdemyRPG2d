@@ -11,6 +11,6 @@ public abstract class PlayerAiredState : EntityState
             player.SetVelocity(player.Movement.x * player.moveSpeed * player.inAirMoveMultiplier, rb.linearVelocityY);
         }
 
-        if (rb.linearVelocityY < 0) stateMachine.ChangeState(player.FallState);
+        if (rb.linearVelocityY < 0 && stateMachine.CurrentState != player.DashState) stateMachine.ChangeState(player.FallState);
     }
 }

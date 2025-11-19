@@ -6,7 +6,7 @@ public abstract class EntityState
     protected StateMachine stateMachine;
     protected string animBoolName;
     protected Rigidbody2D rb;
-    private readonly Animator anim;
+    protected readonly Animator anim;
     protected readonly PlayerInputSet playerInput;
     protected float stateTimer;
     protected bool triggerCalled;
@@ -47,7 +47,7 @@ public abstract class EntityState
         triggerCalled = true;
     }
 
-    private void ChangeAnimatorBoolean(bool state) => anim.SetBool(animBoolName, state);
+    protected void ChangeAnimatorBoolean(bool state) => anim.SetBool(animBoolName, state);
 
-    private bool CanDash() => !player.WallDetected && stateMachine.CurrentState != player.DashState;
+    private bool CanDash() => !player.WallDetected && stateMachine.CurrentState != player.DashState && (player.GroundDetected || !player.hasDashedMidAir);
 }

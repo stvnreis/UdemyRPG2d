@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -19,8 +20,10 @@ public class Player : MonoBehaviour
     public EntityState BasicAttackState { get; private set; }
 
     [Header("Attack details")]
-    public Vector2 attackVelocity;
+    public Vector2[] attackVelocity;
     public float attackVelocityDuration = .1f;
+    public float BasicAttackComboResetTime { get; private set; } = .5f;
+    private Coroutine queuedAttackCoroutine;
 
     [Header("Movement details")]
     public Vector2 Movement { get; private set; }
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
     public int FacingDirection { get; private set; } = 1;
     private bool isFacingRight = true;
     public Vector2 WallJumpForce { get; private set; } = new(6, 12);
+    public bool hasDashedMidAir = false;
 
 
     [Space]
@@ -86,6 +90,22 @@ public class Player : MonoBehaviour
 
         stateMachine.UpdateActiveState();
         HandleCollisionDetection();
+    }
+
+    public void EnterAttackStateWithDelay()
+    {
+
+        if (queuedAttackCoroutine != null)
+            StopCoroutine(queuedAttackCoroutine);
+
+        queuedAttackCoroutine = StartCoroutine(EnterAttackStateWithDelayCo());
+    }
+
+    private IEnumerator EnterAttackStateWithDelayCo()
+    {
+        yield return new WaitForEndOfFrame();
+
+        stateMachine.ChangeState(BasicAttackState);
     }
 
     public void CallAnimationTrigger()
