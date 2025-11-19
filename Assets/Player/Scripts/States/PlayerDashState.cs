@@ -12,7 +12,8 @@ public class PlayerDashState : EntityState
         rb.gravityScale = 0f;
         dashDir = player.Movement.x != 0 ? ((int)player.Movement.x) : player.FacingDirection; ;
 
-        if (!player.GroundDetected) player.hasDashedMidAir = true;
+        if (!player.GroundDetected)
+            player.HasDashedMidAir = true;
     }
 
     public override void Update()

@@ -6,7 +6,7 @@ public abstract class PlayerGroundedState : EntityState
     {
         base.Enter();
 
-        player.hasDashedMidAir = false;
+        player.HasDashedMidAir = false;
     }
 
     public override void Update()

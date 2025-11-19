@@ -49,5 +49,5 @@ public abstract class EntityState
 
     protected void ChangeAnimatorBoolean(bool state) => anim.SetBool(animBoolName, state);
 
-    private bool CanDash() => !player.WallDetected && stateMachine.CurrentState != player.DashState && (player.GroundDetected || !player.hasDashedMidAir);
+    private bool CanDash() => !player.WallDetected && stateMachine.CurrentState != player.DashState && (player.GroundDetected || !player.HasDashedMidAir);
 }

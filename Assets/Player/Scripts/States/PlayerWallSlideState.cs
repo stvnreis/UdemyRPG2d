@@ -4,6 +4,13 @@ public class PlayerWallSlideState : EntityState
 {
     public PlayerWallSlideState(Player player, StateMachine stateMachine) : base(player, stateMachine, "wallSlide") { }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        player.HasDashedMidAir = false;
+    }
+
     public override void Update()
     {
         base.Update();

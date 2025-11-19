@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     public int FacingDirection { get; private set; } = 1;
     private bool isFacingRight = true;
     public Vector2 WallJumpForce { get; private set; } = new(6, 12);
-    public bool hasDashedMidAir = false;
+    public bool HasDashedMidAir { get; set; } = false;
 
     [Space]
     public float dashDuration = .25f;
@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform primaryWallCheck;
+    [SerializeField] private Transform secondaryWallCheck;
     public bool GroundDetected { get; private set; }
     public bool WallDetected { get; private set; }
 
@@ -142,13 +144,17 @@ public class Player : MonoBehaviour
     private void HandleCollisionDetection()
     {
         GroundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
-        WallDetected = Physics2D.Raycast(transform.position, Vector2.right * FacingDirection, wallCheckDistance, groundLayer);
+        bool upperBodyWallDetected = Physics2D.Raycast(primaryWallCheck.position, Vector2.right * FacingDirection, wallCheckDistance, groundLayer);
+        bool lowerBodyWallDetected = Physics2D.Raycast(secondaryWallCheck.position, Vector2.right * FacingDirection, wallCheckDistance, groundLayer);
+
+        WallDetected = upperBodyWallDetected && lowerBodyWallDetected;
     }
 
     private void OnDrawGizmos()
     {
 
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(wallCheckDistance * FacingDirection, 0f));
+        Gizmos.DrawLine(primaryWallCheck.position, primaryWallCheck.position + new Vector3(wallCheckDistance * FacingDirection, 0f));
+        Gizmos.DrawLine(secondaryWallCheck.position, secondaryWallCheck.position + new Vector3(wallCheckDistance * FacingDirection, 0f));
     }
 }
